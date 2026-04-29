@@ -208,9 +208,13 @@ namespace Poker
 
                     lblResult.Text = "已押注，請發牌！";
                 }
-                else
+                else if(currentBet <= 0)
                 {
-                    MessageBox.Show("押注金額必須大於0，且不能超過總資金！", "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("押注金額必須大於0！", "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else if(currentBet > totalMoney)
+                {
+                    MessageBox.Show("押注金額不得超過總資金！", "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else
