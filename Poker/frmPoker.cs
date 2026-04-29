@@ -197,7 +197,7 @@ namespace Poker
         /// </summary>
         private void btnBet_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(txtBet.Text, out currentBet))
+            if (long.TryParse(txtBet.Text, out long currentBet))
             {
                 if (currentBet > 0 && currentBet <= totalMoney)
                 {
