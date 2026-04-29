@@ -139,7 +139,6 @@ namespace Poker
         {
             PictureBox pic = sender as PictureBox;
 
-
             int index = int.Parse(pic.Name.Replace("pic", ""));
 
             int cardNum = playerPoker[index] + 1;
@@ -155,6 +154,42 @@ namespace Poker
                 pic.Tag = "back";
                 pic.Image = GetImage("back");
             }
+        }
+
+        /// <summary>
+        /// 重新開始按鈕點擊事件：重置遊戲狀態，恢復初始設定
+        /// </summary>
+        private void btnRestart_Click(object sender, EventArgs e)
+        {
+            // 1. 重置資金與下注資訊
+            totalMoney = 1000000;
+            lblFund.Text = totalMoney.ToString();
+            currentBet = 0;
+
+            // 2. 清除所有顯示結果的標籤
+            lblResult.Text = "";
+            lblOdds.Text = "";
+            lblReceive.Text = "";
+            // 建議將獲得金額的顏色也恢復預設，避免上一局的顏色殘留
+            lblReceive.ForeColor = SystemColors.ControlText;
+
+            // 3. 【新增】將牌桌上五張牌翻回背面，並設為不可點擊
+            for (int i = 0; i < pic.Length; i++)
+            {
+                pic[i].Image = GetImage("back");
+                pic[i].Tag = "back";
+                pic[i].Enabled = false;
+            }
+
+            // 4. 重置控制項狀態
+            txtBet.Text = "";
+            txtBet.Enabled = true;
+            btnBet.Enabled = true;
+
+            // 確保尚未押注前，功能按鈕是停用的
+            btnDealCard.Enabled = false;
+            btnChangeCard.Enabled = false;
+            btnCheck.Enabled = false;
         }
 
         /// <summary>
@@ -471,5 +506,7 @@ namespace Poker
 
             #endregion
         }
+
+        
     }
 }
