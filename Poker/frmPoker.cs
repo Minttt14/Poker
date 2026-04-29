@@ -31,12 +31,12 @@ namespace Poker
         /// <summary>
         /// 玩家的總資金 (預設給 1000000)
         /// </summary>
-        int totalMoney = 1000000;
+        long totalMoney = 1000000;
 
         /// <summary>
         /// 本局的押注金額
         /// </summary>
-        int currentBet = 0;
+        long currentBet = 0;
 
         #endregion
 
@@ -197,7 +197,7 @@ namespace Poker
         /// </summary>
         private void btnBet_Click(object sender, EventArgs e)
         {
-            if (long.TryParse(txtBet.Text, out long currentBet))
+            if (long.TryParse(txtBet.Text, out currentBet))
             {
                 if (currentBet > 0 && currentBet <= totalMoney)
                 {
@@ -475,7 +475,7 @@ namespace Poker
             lblOdds.Text = multiplier.ToString();
 
             // 2. 結算獲得金額與設定顏色
-            int netProfit = 0;
+            long netProfit = 0;
 
             if (multiplier > 0)
             {
